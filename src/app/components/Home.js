@@ -31,6 +31,9 @@ export class Home extends React.Component{
                 <p>Your name is {this.props.name}, your age is {this.state.age}</p>
                 <p>Status: {this.state.status}</p>
                 <button onClick = {this.onMakeOlder.bind(this)} className="btn btn-primary">Make me older!</button>
+                <br/>
+                <br/>
+                <button onClick={this.props.greet} className="btn btn-primary">Greet</button>
             </div>
         );
     }
