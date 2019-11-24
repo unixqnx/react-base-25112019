@@ -8,7 +8,8 @@ export default class App extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            homeLink:"Home"
+            homeLink : "Home",
+            homeMounted : true
         };
     }
 
@@ -22,7 +23,30 @@ export default class App extends React.Component {
         });
     }
 
+    onChangeHomeMounted(){
+        console.log("onChangeHomeMounted");
+        // this.setState({
+        //     homeMounted : !this.state.homeMounted
+        // });
+        
+        this.setState((state, props) => ({
+            homeMounted : !state.homeMounted
+        }));
+    }
+
     render(){
+        let homeCpm = "";
+
+        if(this.state.homeMounted){
+            homeCpm = (
+                    <Home name={"Max"} 
+                    initialAge={27} 
+                    greet={this.onGreet}
+                    changeLink = {this.onChangeLinkName.bind(this)}
+                    initialLink = {this.state.homeLink}/>
+            );
+        }
+
         return(
             <div className="container">
                 <div className="row">
@@ -32,14 +56,14 @@ export default class App extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-xs-10 col-xs-offet-1">
-                        <Home name={"Max"} 
-                              initialAge={27} 
-                              greet={this.onGreet}
-                              changeLink = {this.onChangeLinkName.bind(this)}
-                              initialLink = {this.state.homeLink}
-                        />
+                        { homeCpm }
                     </div>
                 </div>                
+                <div className="row">
+                    <div className="col-xs-10 col-xs-offet-1">
+                        <button onClick = { this.onChangeHomeMounted.bind(this) } className="btn btn-primary">(Un)Mount Home Component</button>
+                    </div>
+                </div> 
             </div>
         );
     }

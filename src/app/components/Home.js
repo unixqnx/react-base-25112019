@@ -11,8 +11,41 @@ export class Home extends React.Component{
         setTimeout(()=>{
             this.setState({status : 1});
         },3000);
+
+        console.log("Constructor");
     }
 
+    componentWillMount(){
+        console.log("componentWillMount");
+    }
+
+    componentDidMount(){
+        console.log("componentDidMount");
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log("componentWillReceiveProps", nextProps);
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        console.log("shouldComponentUpdate", nextProps, nextState);
+        // if(nextState.status === 1){
+        //     return false;
+        // }
+        return true;
+    }
+
+    componentWillUpdate(nextProps, nextState){
+        console.log("componentWillUpdate", nextProps, nextState);
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        console.log("componentDidUpdate", prevProps, prevState);
+    }
+
+    componentWillUnmount(){
+        console.log("componentWillUnmount");
+    }
 
     onMakeOlder(){
         this.setState({
